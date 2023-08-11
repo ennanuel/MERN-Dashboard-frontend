@@ -1,17 +1,18 @@
-import { Box, useTheme } from "@mui/material";
-import { useGetCustomersQuery } from "../../state/api";
-import { Header } from "../../components";
-import { DataGrid } from "@mui/x-data-grid";
-import { productColumns } from "../../assets/data";
+import { useAppSelector } from '../../state/hooks';
+import { Box, useTheme } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { Header, CustomColumnMenu } from '../../components';
+import { useGetPerformanceQuery } from '../../state/api';
+import { performanceColumns } from '../../assets/data';
 
-const Customers = () => {
+const Performance = () => {
     const theme = useTheme();
-    const { data, isLoading, error } = useGetCustomersQuery();
+    const userId = useAppSelector((state) => state.global.userId);
+    const { data, isLoading, error } = useGetPerformanceQuery(userId);
 
-    
     return (
         <Box m="1.5rem 2.5rem">
-            <Header title="CUSTOMERS" subtitle="List of Customers" />
+            <Header title="PERFORMANCE" subtitle="Track your Affiliate Sales Performance" />
             <Box mt="40px" height="75vh" sx={{ 
                 "& .MuiDataGrid-root" : { border: "none" },
                 "& .MuiDataGrid-cell": { borderBottom: "none"},
@@ -36,12 +37,15 @@ const Customers = () => {
                 <DataGrid 
                     loading={isLoading}
                     getRowId={(row) => row._id}
-                    rows={data || []}
-                    columns={productColumns}
+                    rows={(data && data.sales) || []}
+                    columns={performanceColumns}
+                    slots={{
+                        columnMenu: CustomColumnMenu,
+                    }}
                 />
             </Box>
         </Box>
-    ) 
+    )
 }
 
-export default Customers
+export default Performance

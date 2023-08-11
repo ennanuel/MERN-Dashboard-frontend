@@ -1,12 +1,12 @@
 import { Box, useTheme } from '@mui/material';
-import { useGetGeographyQuery } from 'state/api';
+import { useGetGeographyQuery } from '../../state/api';
 import { Header } from '../../components';
 import { ResponsiveChoropleth } from '@nivo/geo';
 import { geoData } from '../../assets/data';
 
 const Geography = () => {
   const theme = useTheme();
-  const { data } = useGetGeographyQuery();
+  const { data, isLoading, error } = useGetGeographyQuery();
 
   return (
     <Box m="1.5rem 2.5rem">

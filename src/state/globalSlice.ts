@@ -5,10 +5,10 @@ type AppState = {
     userId: string
 }
 
-const initialState = {
+const initialState : AppState = {
     mode: "dark",
-    userId: "63701cc1f03239b7f70000e"
-} as AppState;
+    userId: "63701cc1f03239c72c000182"
+};
 
 export const globalSlice = createSlice({
     name: "global",

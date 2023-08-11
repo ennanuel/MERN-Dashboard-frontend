@@ -1,21 +1,8 @@
 import { useState } from 'react'
 import { Box, Card, CardActions, CardContent, Collapse, Button, Typography, Rating, useTheme, useMediaQuery } from '@mui/material'
-import { Header } from 'components'
+import { Header } from '../../components'
 import { useGetProductsQuery } from '../../state/api'
-
-
-type ProductType = {
-    _id: string;
-    name: string;
-    description: string;
-    price: string;
-    rating: number;
-    category: string;
-    supply: string;
-    stat: {
-        yearlySalesTotal: number
-    };
-}
+import { ProductType } from '../../types'
 
 const Product = ({ _id, name, description, price, rating, category, supply, stat } : ProductType) => {
     const theme = useTheme();
@@ -79,7 +66,7 @@ const Products = () => {
                     }}
                 >
                     {
-                        data.map( ({ _id, name, description, price, rating, category, supply, stat } : ProductType) => (
+                        data && data.map( ({ _id, name, description, price, rating, category, supply, stat } : ProductType) => (
                             <Product
                                 key={_id}
                                 _id={_id}

@@ -69,3 +69,34 @@ export const transactionColumns = [
         renderCell: (params : GridRenderCellParams) => `${Number(params.value).toFixed(2)}`
     },
 ]
+
+export const performanceColumns = [
+    {
+        field: "_id",
+        headerName: "ID",
+        flex: 1,
+    },
+    {
+        field: "userId",
+        headerName: "User ID",
+        flex: 1,
+    },
+    {
+        field: "createdAt",
+        headerName: "Created At",
+        flex: 1,
+    },
+    {
+        field: "products",
+        headerName: "# of Products",
+        flex: 0.5,
+        sortable: false,
+        renderCell: (params : GridRenderCellParams) => params.value.length
+    },
+    {
+        field: "cost",
+        headerName: "Cost",
+        flex: 1,
+        renderCell: (params: GridRenderCellParams) => `${Number(params.value).toFixed(2)}`
+    },
+]

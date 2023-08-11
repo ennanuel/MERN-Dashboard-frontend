@@ -1,5 +1,5 @@
 import navItems from "./navItems";
-import { productColumns, transactionColumns } from "./columns";
+import { productColumns, transactionColumns, performanceColumns } from "./columns";
 import geoData from "./geoData";
 
 const baseUrl = "http://localhost:4000";
@@ -9,5 +9,6 @@ export {
     navItems,
     productColumns,
     transactionColumns,
-    geoData
+    geoData,
+    performanceColumns
 }

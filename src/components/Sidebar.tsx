@@ -24,20 +24,19 @@ import {
 import { FlexBetween } from "./"
 
 import { navItems } from '../assets/data';
+import { profileImage } from '../assets/images';
+import { UserType } from '../types';
 
-import { User } from 'scenes/layout';
-import { profileImage } from 'assets/images/ndex';
 
-
-interface Props {
+interface SidebarProps {
   isNonMobile: boolean;
   drawerWidth: string;
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
-  user: User
+  user: UserType
 }
 
-const Sidebar = ({ isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen, user } : Props) => {
+const Sidebar = ({ isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen, user } : SidebarProps) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
@@ -138,9 +137,11 @@ const Sidebar = ({ isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen, us
                     { user.occupation }
                   </Typography>
                 </Box>
-                <SettingsOutlined
-                  sx={{ color: theme.palette.secondary[300], fontSize: "25px"}}
-                />
+                <IconButton>
+                  <SettingsOutlined
+                    sx={{ color: theme.palette.secondary[300], fontSize: "25px"}}
+                  />
+                </IconButton>
               </FlexBetween>
             </Box>
           </Drawer>

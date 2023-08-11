@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { useTheme, Box } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid';
-import { useGetTransactionsQuery } from 'state/api';
+import { DataGrid, GridSortModel } from '@mui/x-data-grid';
+import { useGetTransactionsQuery } from '../../state/api';
 import { Header, DataGridCustomToolbar } from '../../components';
-import { transactionColumns } from 'assets/data';
-
-
-type SortType = {}
+import { transactionColumns } from '../../assets/data';
 
 const Transactions = () => {
   const theme = useTheme();
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 20 });
-  const [sort, setSort] = useState({} as SortType);
+  const [sort, setSort] = useState({} as GridSortModel);
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
@@ -51,7 +48,7 @@ const Transactions = () => {
           columns={transactionColumns}
           loading={ isLoading } 
           getRowId={( row ) => row._id }
-          rows={data && data.transactions }
+          rows={data ? data.transactions : [] }
           rowCount={ (data && data.total) || 0 }
           pagination
           pageSizeOptions={[20, 50, 100]}
@@ -59,7 +56,7 @@ const Transactions = () => {
           onPaginationModelChange={setPaginationModel}
           paginationMode="server"
           sortingMode="server"
-          onSortModelChange={(newSortModel: SortType) => setSort({...newSortModel})}
+          onSortModelChange={(newSortModel: GridSortModel) => setSort({...newSortModel})}
           slots={{ toolbar: DataGridCustomToolbar }}
           slotProps={{ toolbar: {searchInput, setSearchInput, setSearch} }}
         />

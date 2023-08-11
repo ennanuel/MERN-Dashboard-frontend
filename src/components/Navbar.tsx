@@ -13,8 +13,8 @@ import { AppBar, IconButton, InputBase, Button, Box, Menu, MenuItem, Typography,
 import FlexBetween from "./FlexBetween";
 import { useAppDispatch } from "../state/hooks";
 import { setMode } from "../state/globalSlice";
-import { User } from "scenes/layout";
-import { profileImage } from "assets/images/ndex";
+import { User } from "../scenes/layout";
+import { profileImage } from "../assets/images";
 
 // Remember to import image
 
@@ -27,11 +27,11 @@ interface Props {
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user } : Props) => {
     const dispatch = useAppDispatch()
     const theme = useTheme()
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<EventTarget & Element | null>(null);
 
     const isOpen = Boolean(anchorEl);
 
-    const handleClick = (event) => {
+    const handleClick = (event : React.MouseEvent) => {
         setAnchorEl(event.currentTarget)
     }
 
